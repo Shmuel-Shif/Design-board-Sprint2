@@ -1,0 +1,18 @@
+:root{
+    --clr-primary1: #635757;
+    --clr-primary2: #3079aae1;
+    --clr-primary3: #c2c2c2;
+    --clr-primary4: #e0e0e0;
+    --clr-primary5: #353535;
+    --clr-primaryBase: #606060;
+    --clr-head: #ffffff;
+    --clr-primary-1: #1d1d1d;
+
+
+    --layoutpadding: 60px;
+    
+    --s: 600px;
+    --m: 880px;
+    --l: 1060px;
+
+}

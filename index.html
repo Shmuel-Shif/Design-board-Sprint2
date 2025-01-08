@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Design board</title>
+</head>
+<body onload="onInit()">
+
+    <header class="main-header main-layout">    
+        <div class="header-content">
+            <div class="logo">Browser images</div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#editor">Editor</a></li>
+                    <li><a href="">About</a></li>
+                </ul>
+            </nav>
+            <button class="btn-toggle-menu" onclick="toggleMenu()">&#9776;</button>       
+        </div>
+    </header>
+
+    <div class="box-drawing">
+
+        <canvas width="300" height="300"></canvas>
+
+        <input type="text" id="textInput" placeholder="Enter your text" />
+
+        <button class="time choice"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+        <button class="time addition"><img src="icons/add.png" alt=""></button>
+        <button class="time deletion"><img src="icons/trash.png" alt=""></button>
+
+        <button class="time increase"><img src="icons/increase font - icon.png" alt=""></button>
+        <button class="time reduce"><img src="icons/decrease font - icon.png" alt=""></button>
+
+        <button class="time"><img src="icons/align-to-left.png" alt=""></button>
+        <button class="time"><img src="icons/align-to-right.png" alt=""></button>
+        <button class="time"><img src="icons/center-text-alignment.png" alt=""></button>
+        
+        <select class="font-text"></select>
+
+        <button class="time"><img src="icons/text stroke.png" alt=""></button>
+        <button class="time"><img src="icons/paint-board-and-brush.png" alt=""></button>
+    </div>
+
+    <section id="gallery">
+       <div class="gallery-container">
+        <!-- -->
+       </div>
+    </section>
+
+    <section id="editor" class="editor-section">
+        <h2>Editor</h2>
+        <!-- -->
+    </section>
+    
+
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/browser-controller.js"></script>
+    <script src="js/storage-service.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+.main-header {
+    background-color: var(--clr-primary1);
+    color: var(--clr-head);
+    box-shadow: inset 0px -6px 0 var(--clr-primary-1);
+    padding: 0.5em;
+}
+
+.main-header > .header-content > .logo{
+    font-family: cursive;
+    font-size: 2rem;
+    margin-left: 2em;
+}
+
+.header-content {
+    display: flex;
+}
+
+.main-header .btn-toggle-menu {
+    display: none;
+}
+
+.main-header > .header-content > .logo::after{
+    color: var(--clr-primary2);
+    content: '!';
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.btn-toggle-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    transition: color .3s;
+}
+  
+.btn-toggle-menu:hover {
+    color: var(--clr-primary2);
+}
