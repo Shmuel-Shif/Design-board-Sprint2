@@ -20,7 +20,7 @@
 }
 
 .nav-list {
-    display: flex;
     list-style-type: none;
     margin-left: 7em;
+    display: flex;
 }

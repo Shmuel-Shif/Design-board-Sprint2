@@ -19,11 +19,10 @@ var gImgs = [
     {id: 16, url: 'img/16.jpg', keywords: ['smile', 'play']},
     {id: 17, url: 'img/17.jpg', keywords: ['wag', 'sunny']},
     {id: 18, url: 'img/18.jpg', keywords: ['fetch', 'active']}
-  ]
+]
   
-
-  function renderGallery() {
-    const galleryContainer = document.querySelector('.gallery-container')
+function renderGallery() {
+    const galleryContainer = document.querySelector('#gallery')
     galleryContainer.innerHTML = ''
     
     const imagesToShow = gImgs.slice(0, 18)
@@ -40,8 +39,8 @@ var gImgs = [
     
 
     document.getElementById('gallery').style.display = 'block' 
-  }
-  
+    
+}
   
 function onImgSelect(imgId) {
     memeService.setImg(imgId)
