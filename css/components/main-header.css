@@ -13,6 +13,8 @@
 
 .header-content {
     display: flex;
+    align-content: space-around;
+    justify-content: space-evenly;
 }
 
 .main-header .btn-toggle-menu {
