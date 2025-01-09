@@ -1,5 +1,6 @@
 'use strict'
 
+let savedImages = []
 var gImgs
 var memeService
 
@@ -9,6 +10,9 @@ function onInit() {
         canvas.addEventListener('click', onCanvasClick)
     }
 
+    const fileInput = document.getElementById('fileInput')
+    fileInput.addEventListener('change', loadImage) 
+
     const textInput = document.getElementById('textInput')
     textInput.addEventListener('input', onTextChange)
 
@@ -16,8 +20,14 @@ function onInit() {
         renderGallery()
     })
 
+    document.querySelector('a[href="#editor"]').addEventListener('click', () => {
+        showEditor()
+        renderSavedImages()
+    })
+
+    setupDragAndDrop()
+    renderEmojis()
     renderMeme()
-    document.querySelector('canvas').addEventListener('click', onCanvasClick)
 }
 
 function renderMeme() {
@@ -32,57 +42,57 @@ function renderMeme() {
 
     image.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-
-        const spaceBetweenLines = 0.2
-        let yPos = 200
-        const startingY = 50
-        const maxY = canvas.height - 50
 
         meme.lines.forEach((line, idx) => {
             ctx.font = `${line.size}px ${line.font || 'Arial'}`
 
-            if (idx === meme.lines.length - 1) {
-                yPos = maxY - line.size
-            } else {
-                yPos = startingY + (line.size + spaceBetweenLines) * idx
+            if (line.yPos === undefined) {
+                line.yPos = (idx === meme.lines.length - 1) 
+                    ? canvas.height - 50 - line.size 
+                    : 50 + (line.size + 20) * idx
             }
-
-            line.yPos = yPos
-
-            line.textWidth = ctx.measureText(line.txt).width
-            line.textHeight = line.size
 
             if (line.x === undefined) {
                 if (line.align === 'left') {
                     line.x = 0
                 } else if (line.align === 'right') {
-                    line.x = canvas.width - line.textWidth
-                } else {  
-                    line.x = (canvas.width - line.textWidth) / 2
+                    line.x = canvas.width - ctx.measureText(line.txt).width
+                } else { 
+                    line.x = (canvas.width - ctx.measureText(line.txt).width) / 2
                 }
             }
 
             ctx.fillStyle = line.color
-            ctx.fillText(line.txt, line.x, yPos)
-
+            ctx.fillText(line.txt, line.x, line.yPos)
+            
             ctx.strokeStyle = line.strokeColor
             ctx.lineWidth = 0.5
-            ctx.strokeText(line.txt, line.x, yPos)
+            ctx.strokeText(line.txt, line.x, line.yPos)
 
             if (idx === meme.selectedLineIdx) {
                 ctx.strokeStyle = 'black'
                 ctx.lineWidth = 1
-                
                 ctx.strokeRect(
-                    line.x - 5,  
-                    yPos - line.textHeight - 5, 
-                    line.textWidth + 10,  
-                    line.textHeight + 10 
+                    line.x - 5,
+                    line.yPos - line.size - 5,
+                    ctx.measureText(line.txt).width + 10,
+                    line.size + 10
                 )
+            }
+
+            if (line.txt.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u)) {
+                ctx.fillText(line.txt, line.x, line.yPos)
+                ctx.strokeText(line.txt, line.x, line.yPos)
             }
         })
     }
+}
+
+function onImgSelect(imgId) {
+    memeService.setImg(imgId)
+    renderMeme()
 }
 
 function onAddLine() {
@@ -180,5 +190,18 @@ function onAlignCenter() {
     selectedLine.x = (canvas.width - selectedLine.textWidth) / 2
     renderMeme()
 }
+
+function onSaveImage() {
+    const canvas = document.getElementById('myCanvas')
+    const imageUrl = canvas.toDataURL("image/png")
+    
+    savedImages.push(imageUrl)
+    
+    console.log('Image saved:', imageUrl)
+    renderSavedImages()
+}
+
+
+
 
 

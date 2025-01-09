@@ -24,7 +24,8 @@
 
     <div class="box-drawing">
 
-        <canvas width="300" height="300"></canvas>
+        <input type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
+        <canvas id="myCanvas" width="400" height="400"></canvas>
 
         <input type="text" id="textInput" placeholder="Enter your text" />
 
@@ -81,25 +82,38 @@
             <img src="icons/paint-board-and-brush.png" alt="Text Fill">
             <input class="box-color" type="color" id="fillColorPicker" onchange="setTextFillColor()" />
         </button>
-        
+
+        <div id="emoji-picker">
+            <button id="prev-btn" onclick="prevEmojis()">⬅️</button>
+            <div id="emoji-container"></div>
+            <button id="next-btn" onclick="nextEmojis()">➡️</button>
+        </div>  
+
+        <button onclick="onSaveImage()">Save</button>
         <button onclick="downloadMeme()">Download</button>
-        
+        <button onclick="shareOnFacebook()">Share on Facebook</button>
+
     </div>
 
-    <section id="gallery">
-        <h2>Gallery</h2>
-    </section>
+    <div class="box-gallery">
+        <input type="text" id="search-input" placeholder="Search for an image..." oninput="onSearch(this.value)" />
+        <div id="keywords"></div>
+        <div id="gallery"></div> 
+    </div>
     
-
-    <section id="editor" class="editor-section">
-        <h2>Editor</h2>
-        <!-- -->
-    </section>
+        
+    <div class="box-editor" style="display: none;">
+        <div id="editor">
+        <div id="saved-images"></div>
+        </div>
+    </div>
+        
+        
     
-
     <script src="js/meme-service.js"></script>
-    <script src="js/gallery-controller.js"></script>
+    <script src="js/header-controller.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/emoji-picker.js"></script>
     <!-- <script src="js/storage-service.js"></script> -->
 </body>
 </html>
