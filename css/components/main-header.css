@@ -1,4 +1,3 @@
-
 .main-header {
     background-color: var(--clr-primary1);
     color: var(--clr-head);
@@ -6,7 +5,7 @@
     padding: 0.5em;
 }
 
-.main-header > .header-content > .logo{
+.main-header > .header-content > .logo {
     font-family: cursive;
     font-size: 2rem;
     margin-left: 2em;
@@ -20,7 +19,7 @@
     display: none;
 }
 
-.main-header > .header-content > .logo::after{
+.main-header > .header-content > .logo::after {
     color: var(--clr-primary2);
     content: '!';
     font-size: 0.7em;
@@ -35,7 +34,54 @@
     cursor: pointer;
     transition: color .3s;
 }
-  
+
 .btn-toggle-menu:hover {
     color: var(--clr-primary2);
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 1em;
+    }
+
+    .main-header > .header-content > .logo {
+        font-size: 1.5rem;
+        margin-left: 1em;
+    }
+
+    .main-nav {
+        display: block;
+        margin-left: 0;
+    }
+
+    .main-nav > ul {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .main-nav > ul > li {
+        margin-left: 0;
+    }
+
+    .btn-toggle-menu {
+        display: block;
+        font-size: 2em;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 0.5em;
+    }
+
+    .main-header > .header-content > .logo {
+        font-size: 1.3rem;
+        margin-left: 1em;
+    }
+
+    .btn-toggle-menu {
+        font-size: 1.8em;
+    }
 }

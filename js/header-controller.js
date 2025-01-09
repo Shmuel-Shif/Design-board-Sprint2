@@ -57,6 +57,7 @@ function renderGallery() {
       filterImagesByKeyword(keyword)
       keywordPopularity[keyword]++
       renderGallery()
+      saveProject()
     })
 
     keywordsContainer.appendChild(keywordElem)
@@ -80,6 +81,7 @@ function renderGallery() {
   })
 
   document.querySelector('.box-gallery').style.display = 'block'
+  saveProject()
 }
 
 function filterImagesByKeyword(keyword) {
@@ -107,18 +109,22 @@ function renderSavedImages() {
   const savedImagesContainer = document.getElementById('saved-images')
   if (!savedImagesContainer) {
       console.error('Saved images container not found')
-      return;
+      return
   }
 
   savedImagesContainer.innerHTML = ''
 
   savedImages.forEach((imageUrl, idx) => {
       const imgElement = document.createElement('img')
-      imgElement.src = imageUrl
+      imgElement.src = imageUrl;
       imgElement.alt = `Saved image ${idx + 1}`
       imgElement.style.width = '150px'
       imgElement.style.margin = '10px'
+
+      imgElement.addEventListener('click', () => onImageClick(imageUrl))
+      
       savedImagesContainer.appendChild(imgElement)
   })
+  saveProject()
 }
 

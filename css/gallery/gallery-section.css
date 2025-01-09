@@ -4,34 +4,40 @@
     background-color: #f4f4f4;
 }
 
-#gallery {
-    padding: 20px;
+.header-gallery {
+    background-color: var(--clr-primary1);
+    color: var(--clr-head);
+    box-shadow: inset 0px -6px 0 var(--clr-primary-1);
+    padding: 0.5em;
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    justify-content: center;
 }
 
-.image-container {
-    margin: 10px;
-    position: relative;
-    display: inline-block;
+#search-input {
+    font-weight: bold;
+    width: 15em;
+    height: 3em;
+    background-color: var(--clr-primary1);
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
 }
-  
-.image-container img {
-    width: 200px;
-    height: 200px;
+
+
+#gallery {
+    gap: 10px;
+    background-color: rgb(219, 217, 213);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-  
-.image-container span {
-    display: block;
-    margin-top: 5px;
-    color: #000;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 2px 5px;
-    border-radius: 5px;
+
+#gallery img {
     cursor: pointer;
+    margin: 10px;
+    width: 150px;
+    border-radius: 15px;
 }
-  
+
 #keywords {
     display: flex;
     flex-wrap: wrap;
@@ -42,20 +48,52 @@
 #keywords span {
     font-size: 50px;
     padding: 5px 10px;
-    background-color: #f0f0f0;
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
     transition: font-size 0.3s ease;
 }
-  
-#gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+
+span {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+    color: #ffffff;
+    background: rgba(71, 53, 53, 0.7);
+    cursor: pointer;
 }
-  
-#gallery img {
-    margin: 10px;
-    width: 150px;
+
+@media (max-width: 768px) {
+    .box-gallery {
+        display: none;
+        width: 100%;
+    }
+
+    #gallery img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #keywords {
+        width: 100%;
+        max-width: 220px;
+    }
 }
+
+@media (max-width: 480px) {
+    .box-gallery {
+        display: none;
+        width: 100%;
+    }
+
+    #gallery img {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    #keywords {
+        width: 100%;
+        max-width: 220px;
+    }
+}
+

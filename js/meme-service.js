@@ -41,6 +41,7 @@ var memeService = {
         meme.selectedLineIdx = meme.lines.length - 1
 
         renderMeme()
+        saveProject()
     },
 
     setLineTxt: function (newText) {
@@ -90,11 +91,13 @@ var memeService = {
 function openStrokeColorPicker() {
     const strokeColorPicker = document.getElementById('strokeColorPicker')
     strokeColorPicker.click()
+    saveProject()
 }
 
 function openFillColorPicker() {
     const fillColorPicker = document.getElementById('fillColorPicker')
     fillColorPicker.click()
+    saveProject()
 }
 
 function setTextStrokeColor() {
@@ -102,6 +105,7 @@ function setTextStrokeColor() {
     const selectedStrokeColor = strokeColorPicker.value
     memeService.setLineStrokeColor(selectedStrokeColor)
     renderMeme()
+    saveProject()
 }
 
 function setTextFillColor() {
@@ -109,6 +113,7 @@ function setTextFillColor() {
     const selectedFillColor = fillColorPicker.value
     memeService.setLineFillColor(selectedFillColor)
     renderMeme()
+    saveProject()
 }
 
 function increaseFontSize() {
@@ -116,6 +121,8 @@ function increaseFontSize() {
     const line = meme.lines[meme.selectedLineIdx]
     line.size += 2
     renderMeme()
+    saveProject()
+
 }
 
 function decreaseFontSize() {
@@ -123,6 +130,7 @@ function decreaseFontSize() {
     const line = meme.lines[meme.selectedLineIdx]
     line.size -= 2
     renderMeme()
+    saveProject()
 }
 
 function switchLine() {
@@ -135,6 +143,7 @@ function switchLine() {
 
     meme.selectedLineIdx = newSelectedLineIdx
     renderMeme()
+    saveProject()
 }
 
 function updateEditor(selectedLine) {
@@ -143,18 +152,20 @@ function updateEditor(selectedLine) {
     
     document.getElementById('strokeColorPicker').value = selectedLine.strokeColor
     document.getElementById('fillColorPicker').value = selectedLine.color
+    saveProject()
 }
 
 function getTextWidth(line) {
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
     ctx.font = `${line.size}px ${line.font || 'Arial'}`
+    saveProject()
     return ctx.measureText(line.txt).width
 }
 
 function initDragAndDrop() {
     const canvas = document.querySelector('canvas')
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d')
 
     canvas.addEventListener('mousedown', (e) => {
         let xPos = e.offsetX
@@ -176,10 +187,11 @@ function initDragAndDrop() {
             }
         })
 
-        canvas.addEventListener('mouseup', () => {
+            canvas.addEventListener('mouseup', () => {
             canvas.removeEventListener('mousemove', () => {})
         })
     })
+    saveProject()
 }
 
 function setupDragAndDrop() {
@@ -221,25 +233,28 @@ function setupDragAndDrop() {
         }
 
         renderMeme()
+        saveProject()
     })
 
     canvas.addEventListener('mousemove', (e) => {
         if (isDragging && dragLine) {
             dragLine.x = e.offsetX - offsetX
             dragLine.yPos = e.offsetY - offsetY
-
             renderMeme()
+            saveProject()
         }
     })
 
     canvas.addEventListener('mouseup', () => {
         isDragging = false
         dragLine = null
+        saveProject()
     })
 
     canvas.addEventListener('mouseleave', () => {
         isDragging = false
         dragLine = null
+        saveProject()
     })
 }
 
@@ -286,6 +301,7 @@ function loadImage(event) {
     }
 
     reader.readAsDataURL(file)
+    saveProject()
 }
 
 function drawImage() {
@@ -296,6 +312,7 @@ function drawImage() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
     }
+    saveProject()
 }
 
 function drawText(txt, x, y, fontSize = 30, color = 'white') {
@@ -307,9 +324,11 @@ function drawText(txt, x, y, fontSize = 30, color = 'white') {
     ctx.fillStyle = color;
     ctx.font = `${fontSize}px Arial`
     ctx.fillText(txt, x, y)
+    saveProject()
 }
 
 function showEditor() {
     const boxEditor = document.querySelector('.box-editor')
     boxEditor.style.display = 'block'
+    saveProject()
 }

@@ -6,7 +6,7 @@
 @import url(components/main-nav.css);
 
 @import url(drawing/basic-box.css);
-@import url(drawing/bth-color.css);
+@import url(drawing/button.css);
 
 @import url(editor/editor-section.css);
 @import url(gallery/gallery-section.css);

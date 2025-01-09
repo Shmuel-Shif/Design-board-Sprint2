@@ -1,9 +1,230 @@
-img, .time{
-    width: 20%;
-    cursor: pointer;
+.box-drawing {
+    width: auto; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    flex-wrap: wrap;   
+    background-color: #d6d3d3;
+    display: grid;
+    grid-template-columns: repeat(23, 30px);
+    grid-template-rows: repeat(15, 30px);
+    gap: 3px; 
+    margin: 20px; 
+    padding: 20px;
+    border-radius: 15px;
 }
 
-canvas {
-    border: 1px solid rgb(0, 0, 0);
-    background-color:white;
+
+#myCanvas {
+    border-radius: 15px;
+    grid-column-start: 1;
+    grid-column-end: 14;
+    grid-row-start: 2;
+    grid-row-end: 12;
+    max-width: 100%;
+    border: 2px solid #000;
+}
+
+.time0 {
+    background-color: #d6d3d3;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #6793f1;
+    grid-column-start: 22;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    max-width: 100%;
+}
+
+.time1 {
+    background-color: #5484eb;
+    grid-column-start: 3;
+    grid-column-end: 9;
+    grid-row-start: 13;
+    grid-row-end: 14;
+    max-width: 100%;
+}
+
+.time2 {
+    background-color: #5484eb;
+    grid-column-start: 14;
+    grid-column-end: 16;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    max-width: 100%;
+}
+
+.time3 {
+    background-color: rgb(114, 248, 114);
+    grid-column-start: 16;
+    grid-column-end: 18;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    max-width: 100%;
+}
+
+.time4 {
+    background-color: rgb(250, 103, 103);
+    grid-column-start: 18;
+    grid-column-end: 20;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    max-width: 100%;
+}
+
+.time5 {
+    background-color: #7e87a7;
+    grid-column-start: 14;
+    grid-column-end: 12;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    max-width: 100%;
+}
+
+.time6 {
+    background-color: #7e87a7;
+    grid-column-start: 16;
+    grid-column-end: 14;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    max-width: 100%;
+}
+
+.time7 {
+    background-color: #7e87a7;
+    grid-column-start: 18;
+    grid-column-end: 16;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    max-width: 100%;
+}
+
+.time8 {
+    background-color: #7e87a7;
+    grid-column-start: 22;
+    grid-column-end: 20;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    max-width: 100%;
+}
+
+.time9 {
+    background-color: #7e87a7;
+    grid-column-start: 20;
+    grid-column-end: 18;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    max-width: 100%;
+}
+
+.time10 {
+    font-size: 18px;
+    border-radius: 15px;
+    background-color: #7e87a7;
+    grid-column-start: 18;
+    grid-column-end: 12;
+    grid-row-start: 7;
+    grid-row-end: 9;
+    max-width: 100%;
+}
+
+.time11 {
+    background-color: #7e87a7;
+    grid-column-start: 20;
+    grid-column-end: 18;
+    grid-row-start: 7;
+    grid-row-end: 9;
+    max-width: 100%;
+}
+
+.time12 {
+    background-color: #7e87a7;
+    grid-column-start: 22;
+    grid-column-end: 20;
+    grid-row-start: 7;
+    grid-row-end: 9;
+    max-width: 100%;
+}
+
+.time13 {
+    background-color: #505a7c;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 22;
+    grid-column-end: 12;
+    grid-row-start: 9;
+    grid-row-end: 11;
+    max-width: 100%;
+}
+
+.time14 {
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #6793f1;
+    grid-column-start: 12;
+    grid-column-end: 17;
+    grid-row-start: 11;
+    grid-row-end: 13;
+    max-width: 100%;
+}
+
+.time15 {
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #6793f1;
+    grid-column-start: 17;
+    grid-column-end: 22;
+    grid-row-start: 11;
+    grid-row-end: 13;
+    max-width: 100%;
+}
+
+.time16 {
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #6793f1;
+    grid-column-start: 13;
+    grid-column-end: 21;
+    grid-row-start: 13;
+    grid-row-end: 15;
+    max-width: 100%;
+}
+
+.time14:hover,
+.time15:hover,
+.time16:hover{
+    background-color: #5484eb;
+}
+
+@media (max-width: 768px) {
+    .box-drawing {
+        width: 100%;
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+    }
+
+    #myCanvas {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 11;
+    }
+}
+
+@media (max-width: 480px) {
+    .box-drawing {
+        width: 100%;
+        grid-template-columns: repeat(8, 30px);
+        grid-template-rows: repeat(8, 30px);
+    }
+
+    #myCanvas {
+        grid-column-start: 1;
+        grid-column-end: 9;
+        grid-row-start: 1;
+        grid-row-end: 9;
+    }
 }

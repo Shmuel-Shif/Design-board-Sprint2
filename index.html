@@ -24,44 +24,44 @@
 
     <div class="box-drawing">
 
-        <input type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
-        <canvas id="myCanvas" width="400" height="400"></canvas>
+        <canvas id="myCanvas" width="300" height="300"></canvas>
+        
+        <input class="time0" type="text" id="textInput" placeholder="Enter your text" />
+        <input class="time1" type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
 
-        <input type="text" id="textInput" placeholder="Enter your text" />
-
-        <button class="time choice" onclick="switchLine()">
+        <button class="time2 choice" onclick="switchLine()">
             <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="Switch Line">
         </button>
-               
-        <button class="time" onclick="onAddLine()">
+   
+        <button class="time3" onclick="onAddLine()">
             <img src="icons/add.png" alt="Add Line">
         </button>
 
-        <button class="time deletion" onclick="onDeleteLine()">
+        <button class="time4 deletion" onclick="onDeleteLine()">
             <img src="icons/trash.png" alt="">
         </button>
         
-        <button class="time" onclick="onChangeFontSize(1)">
+        <button class="time5" onclick="onChangeFontSize(1)">
             <img src="icons/increase font - icon.png" alt="Increase Font">
         </button>
 
-        <button class="time" onclick="onChangeFontSize(-1)">
+        <button class="time6" onclick="onChangeFontSize(-1)">
             <img src="icons/decrease font - icon.png" alt="Decrease Font">
         </button>        
         
-        <button class="time" onclick="onAlignLeft()">
+        <button class="time7" onclick="onAlignLeft()">
             <img src="icons/align-to-left.png" alt="">
         </button>
         
-        <button class="time" onclick="onAlignRight()">
+        <button class="time8" onclick="onAlignRight()">
             <img src="icons/align-to-right.png" alt="">
         </button>
         
-        <button class="time" onclick="onAlignCenter()">
+        <button class="time9" onclick="onAlignCenter()">
             <img src="icons/center-text-alignment.png" alt="">
         </button>
         
-        <select class="font-text" onchange="onChangeFontFamily(this.value)">
+        <select class="time10 font-text" onchange="onChangeFontFamily(this.value)">
             <option value="Arial">Arial</option>
             <option value="Verdana">Verdana</option>
             <option value="Courier">Courier</option>
@@ -73,47 +73,47 @@
             <option value="Courier New">Courier New</option>
         </select>
         
-        <button class="time" onclick="openStrokeColorPicker()">
+        <button class="time11" onclick="openStrokeColorPicker()">
             <img src="icons/text stroke.png" alt="Text Stroke">
             <input class="box-color" type="color" id="strokeColorPicker" onchange="setTextStrokeColor()" />
         </button>
 
-        <button class="time" onclick="openFillColorPicker()">
+        <button class="time12" onclick="openFillColorPicker()">
             <img src="icons/paint-board-and-brush.png" alt="Text Fill">
             <input class="box-color" type="color" id="fillColorPicker" onchange="setTextFillColor()" />
         </button>
 
-        <div id="emoji-picker">
+        <div id="emoji-picker" class="time13">
             <button id="prev-btn" onclick="prevEmojis()">⬅️</button>
             <div id="emoji-container"></div>
             <button id="next-btn" onclick="nextEmojis()">➡️</button>
         </div>  
 
-        <button onclick="onSaveImage()">Save</button>
-        <button onclick="downloadMeme()">Download</button>
-        <button onclick="shareOnFacebook()">Share on Facebook</button>
+        <button class="time14" onclick="onSaveImage()">Save</button>
+        <button class="time15" onclick="downloadMeme()">Download</button>
+        <button class="time16" onclick="shareOnFacebook()">Share on Facebook</button>
 
     </div>
 
     <div class="box-gallery">
+        <div class="header-gallery">
         <input type="text" id="search-input" placeholder="Search for an image..." oninput="onSearch(this.value)" />
         <div id="keywords"></div>
+    </div>
         <div id="gallery"></div> 
     </div>
     
-        
-    <div class="box-editor" style="display: none;">
+    <div class="box-editor">
+        <h1>You meme:</h1>
         <div id="editor">
         <div id="saved-images"></div>
         </div>
     </div>
-        
-        
     
     <script src="js/meme-service.js"></script>
     <script src="js/header-controller.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/emoji-picker.js"></script>
-    <!-- <script src="js/storage-service.js"></script> -->
+    <script src="js/storage-service.js"></script>
 </body>
 </html>

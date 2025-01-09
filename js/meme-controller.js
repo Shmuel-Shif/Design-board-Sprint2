@@ -1,5 +1,6 @@
 'use strict'
 
+let currentImageData = null
 let savedImages = []
 var gImgs
 var memeService
@@ -9,7 +10,7 @@ function onInit() {
     if (canvas) {
         canvas.addEventListener('click', onCanvasClick)
     }
-
+    
     const fileInput = document.getElementById('fileInput')
     fileInput.addEventListener('change', loadImage) 
 
@@ -25,6 +26,7 @@ function onInit() {
         renderSavedImages()
     })
 
+    loadProject() 
     setupDragAndDrop()
     renderEmojis()
     renderMeme()
@@ -87,82 +89,93 @@ function renderMeme() {
                 ctx.strokeText(line.txt, line.x, line.yPos)
             }
         })
+        saveProject()
     }
 }
 
 function onImgSelect(imgId) {
     memeService.setImg(imgId)
+    saveProject()
     renderMeme()
 }
 
 function onAddLine() {
     memeService.addLine()
-    console.log(memeService.getMeme().lines);
+    console.log(memeService.getMeme().lines)
+    saveProject()
     renderMeme()
 } 
 
 function onTextChange(event) {
     const newText = event.target.value
     memeService.setLineTxt(newText)
+    saveProject()
     renderMeme()
 }
 
 function onSetFillColor(color) {
     memeService.setLineFillColor(color)
+    saveProject()
     renderMeme()
 }
 
 function onSetStrokeColor(color) {
     memeService.setLineStrokeColor(color)
+    saveProject()
     renderMeme()
 }
 
 function onDeleteLine() {
     memeService.deleteLine()
+    saveProject()
     renderMeme()
 }
 
 function onSwitchLine() {
     memeService.switchLine()
+    saveProject()
     renderMeme()
 }
 
 function onChangeFontSize(delta) {
     memeService.changeFontSize(delta)
     renderMeme()
+    saveProject()
 }
 
 function onChangeFontFamily(font) {
     memeService.setLineFontFamily(font)
+    saveProject()
     renderMeme()
 }
 
 function onCanvasClick(event) {
-    const meme = memeService.getMeme();
-    const canvas = document.querySelector('canvas');
-    if (!canvas) return;
+    const meme = memeService.getMeme()
+    const canvas = document.querySelector('canvas')
+    if (!canvas) return
     
-    const mouseX = event.offsetX;
-    const mouseY = event.offsetY;
+    const mouseX = event.offsetX
+    const mouseY = event.offsetY
     
-    console.log(`Mouse clicked at: X=${mouseX}, Y=${mouseY}`);
+    console.log(`Mouse clicked at: X=${mouseX}, Y=${mouseY}`)
 
     meme.lines.forEach((line, idx) => {
-        const textWidth = line.textWidth;
-        const textHeight = line.textHeight;
+        const textWidth = line.textWidth
+        const textHeight = line.textHeight
 
-        const x = line.x;
-        const y = line.yPos;
+        const x = line.x
+        const y = line.yPos
 
-        console.log(`Checking line ${idx}: X=${x}, Y=${y}, Width=${textWidth}, Height=${textHeight}`);
+        console.log(`Checking line ${idx}: X=${x}, Y=${y}, Width=${textWidth}, Height=${textHeight}`)
 
         if (mouseX >= x && mouseX <= x + textWidth &&
             mouseY >= y - textHeight && mouseY <= y) {
             meme.selectedLineIdx = idx;
-            updateEditor(meme.lines[idx]);  
-            renderMeme();
+            updateEditor(meme.lines[idx])
+            renderMeme()
         }
-    });
+    })
+    saveProject()
 }
 
 function onAlignLeft() {
@@ -170,6 +183,7 @@ function onAlignLeft() {
     const selectedLine = meme.lines[meme.selectedLineIdx]
 
     selectedLine.x = 0
+    saveProject()
     renderMeme()
 }
 
@@ -179,6 +193,7 @@ function onAlignRight() {
 
     const canvas = document.querySelector('canvas')
     selectedLine.x = canvas.width - selectedLine.textWidth
+    saveProject()
     renderMeme()
 }
 
@@ -189,6 +204,7 @@ function onAlignCenter() {
     const canvas = document.querySelector('canvas')
     selectedLine.x = (canvas.width - selectedLine.textWidth) / 2
     renderMeme()
+    saveProject()
 }
 
 function onSaveImage() {
@@ -196,12 +212,36 @@ function onSaveImage() {
     const imageUrl = canvas.toDataURL("image/png")
     
     savedImages.push(imageUrl)
-    
     console.log('Image saved:', imageUrl)
     renderSavedImages()
+    saveProject()
 }
 
+function onImageClick(imageSrc) {
+    const canvas = document.getElementById('myCanvas')
+    const ctx = canvas.getContext('2d')
 
+    const img = new Image()
+    img.src = imageSrc
 
+    img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+        currentImageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    }
+    saveProject()
+}
+
+function onEditImage() {
+    const canvas = document.getElementById('myCanvas')
+    const ctx = canvas.getContext('2d')
+
+    if (currentImageData) {
+        ctx.putImageData(currentImageData, 0, 0)
+    }
+    saveProject()
+}
 
 

@@ -1,0 +1,53 @@
+.box-color {
+    display: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+    margin: 5px;
+    padding: 10px;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 1.3em;
+}
+
+button img {
+    width: 30px;
+    height: 30px;
+}
+
+#fileInput {
+    background-color: #4a90e2; 
+    color: #333333; 
+    border: 2px solid #4a90e2; 
+    border-radius: 8px; 
+    padding: 3px 10px; 
+    font-size:15px; 
+    cursor: pointer; 
+}
+
+@media (max-width: 768px) {
+    button {
+        font-size: 1em;
+        padding: 8px;
+    }
+
+    button img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    button {
+        font-size: 1.1em;
+        padding: 6px;
+    }
+
+    button img {
+        width: 22px;
+        height: 22px;
+    }
+}
