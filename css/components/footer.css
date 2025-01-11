@@ -1,0 +1,14 @@
+/* CSS */
+footer {
+    font-family: cursive;
+    background-color: var(--clr-primary1);
+    color: var(--clr-head);   
+    box-shadow: inset 0px 6px 0 var(--clr-primary-1);
+    text-align: center; 
+    padding: 20px 0; 
+    position: fixed;
+    bottom: 0; 
+    width: 100%; 
+    font-size: 16px; 
+  }
+  

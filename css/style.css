@@ -4,6 +4,7 @@
 
 @import url(components/main-header.css); 
 @import url(components/main-nav.css);
+@import url(components/footer.css);
 
 @import url(drawing/basic-box.css);
 @import url(drawing/button.css);
