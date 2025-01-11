@@ -33,21 +33,20 @@
 
 
     
-@media (max-width: 768px) {
+@media (max-width: 800px) {
         
     .nav-list {
-            display: block;
-            margin-left: 0;
-            text-align: center;
+        display: block;
+        margin-left: 0;
+        text-align: center;
     }
     
     .main-nav > ul > li {
-            margin-left: 0;
-            margin-bottom: 10px;
+        margin-bottom: 10px;
     }
     
     .main-nav a {
-            display: block;
+         display: block;
     }
     
     .main-header {
@@ -80,13 +79,13 @@
         grid-template-rows: 1fr;
     }
 
-    .btn-toggle-menu {
-        margin: 0;
-    }
-
     .main-nav>ul {
         flex-direction: column;
         min-height: 0;
+    }
+
+    li {
+        width: 100%;
     }
 
     .main-nav>ul li {

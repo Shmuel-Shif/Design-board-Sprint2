@@ -36,9 +36,12 @@
     color: var(--clr-primary2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .main-header {
         padding: 1em;
+        position: fixed;
+        top: 0; /* מונע את הרווח הקטן למעלה */
+        width: 100%; 
     }
 
     .main-header > .header-content > .logo {

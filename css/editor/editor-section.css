@@ -124,14 +124,44 @@ h1 {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .box-editor {
         width: 90%;
-        height: 70%;
+        height: 75%; 
+        padding: 15px; 
     }
 
     #editor img {
-        width: 100px;
+        width: 120px; 
+        margin: 8px; 
+    }
+
+    h1 {
+        font-size: 1.2em; 
+    }
+
+    .modal-content {
+        padding: 15px; 
+    }
+
+    .modal p {
+        font-size: 1em; 
+    }
+
+    .modal #edit-btn, .modal #delete-btn, .modal #closed-btn {
+        padding: 8px 16px;
+    }
+
+    .modal #edit-btn {
+        background-color: #45a049;
+    }
+
+    .modal #delete-btn {
+        background-color: #c53939;
+    }
+
+    .modal #closed-btn {
+        background-color: #1b93ca;
     }
 }
 
@@ -139,11 +169,43 @@ h1 {
     .box-editor {
         width: 100%;
         height: 80%;
+        padding: 10px; 
+        box-sizing: border-box; 
     }
 
     #editor img {
-        width: 80px;
+        width: 70px; 
+        margin: 5px; 
     }
 
+    h1 {
+        font-size: 1.1em; 
+        text-align: center; 
+    }
+
+    .modal-content {
+        padding: 10px;
+    }
+
+    .modal p {
+        font-size: 0.9em; 
+    }
+
+    .modal #edit-btn, .modal #delete-btn, .modal #closed-btn {
+        padding: 6px 12px; 
+        font-size: 0.9em; 
+    }
+
+    .modal #edit-btn {
+        background-color: #45a049;
+    }
+
+    .modal #delete-btn {
+        background-color: #c53939;
+    }
+
+    .modal #closed-btn {
+        background-color: #1b93ca;
+    }
 }
 

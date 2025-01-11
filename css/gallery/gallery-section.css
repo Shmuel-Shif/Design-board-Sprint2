@@ -92,19 +92,31 @@ span {
     transform: scale(1.1); 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .box-gallery {
-        width: 90%;
-        height: 70%;
+        width: 90%; 
+        height: 70%; /
     }
 
     #gallery img {
-        width: 100px;
+        width: 120px; 
     }
 
     #keywords {
         width: 100%;
-        max-width: 220px;
+        max-width: 280px; 
+        font-size: 40px; 
+    }
+    
+    .header-gallery {
+        padding: 0.7em; 
+    }
+
+    .close-btn {
+        width: 35px; 
+        height: 35px;
+        font-size: 22px;
+        line-height: 35px;
     }
 }
 
@@ -112,15 +124,28 @@ span {
     .box-gallery {
         width: 100%;
         height: 80%;
+        padding: 10px; 
     }
 
     #gallery img {
-        width: 80px;
+        width: 80px; 
     }
 
     #keywords {
         width: 100%;
-        max-width: 220px;
+        font-size: 30px; 
+    }
+
+    .header-gallery {
+        padding: 0.5em; 
+    }
+
+    .close-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        line-height: 30px;
     }
 }
+
 

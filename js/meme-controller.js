@@ -29,6 +29,11 @@ function onInit() {
         renderSavedImages()
     })
 
+    const menuItems = document.querySelectorAll('.main-nav > ul > li')
+    menuItems.forEach(item => {
+        item.addEventListener('click', toggleMenu)
+    })
+
     loadProject()    
     loadSavedImages()
     setupDragAndDrop()
