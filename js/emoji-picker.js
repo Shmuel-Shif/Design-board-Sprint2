@@ -53,6 +53,6 @@ function addSticker(emoji) {
         font: 'Arial',
 })
 
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }

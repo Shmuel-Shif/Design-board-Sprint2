@@ -38,10 +38,10 @@ function onInit() {
     loadSavedImages()
     setupDragAndDrop()
     renderEmojis()
-    renderMeme()
+    onRenderMeme()
 }
 
-function renderMeme() {
+function onRenderMeme() {
     const meme = memeService.getMeme()
     const img = gImgs.find(image => image.id === meme.selectedImgId)
 
@@ -53,7 +53,6 @@ function renderMeme() {
 
     image.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
 
         meme.lines.forEach((line, idx) => {
@@ -120,58 +119,57 @@ function renderMeme() {
 
 function onImgSelect(imgId) {
     memeService.setImg(imgId)
-    saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onAddLine() {
     memeService.addLine()
     console.log(memeService.getMeme().lines)
     saveProject()
-    renderMeme()
+    onRenderMeme()
 } 
 
 function onTextChange(event) {
     const newText = event.target.value
     memeService.setLineTxt(newText)
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onSetFillColor(color) {
     memeService.setLineFillColor(color)
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onSetStrokeColor(color) {
     memeService.setLineStrokeColor(color)
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onDeleteLine() {
     memeService.deleteLine()
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onSwitchLine() {
     memeService.switchLine()
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onChangeFontSize(delta) {
     memeService.changeFontSize(delta)
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }
 
 function onChangeFontFamily(font) {
     memeService.setLineFontFamily(font)
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onCanvasClick(event) {
@@ -197,7 +195,7 @@ function onCanvasClick(event) {
             mouseY >= y - textHeight && mouseY <= y) {
             meme.selectedLineIdx = idx;
             updateEditor(meme.lines[idx])
-            renderMeme()
+            onRenderMeme()
         }
     })
     saveProject()
@@ -210,7 +208,7 @@ function onAlignLeft() {
     selectedLine.align = 'left'
     selectedLine.x = 0
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onAlignRight() {
@@ -223,7 +221,7 @@ function onAlignRight() {
     selectedLine.align = 'right'
     selectedLine.x = canvas.width - ctx.measureText(selectedLine.txt).width
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onAlignCenter() {
@@ -236,7 +234,7 @@ function onAlignCenter() {
     selectedLine.align = 'center'
     selectedLine.x = (canvas.width - ctx.measureText(selectedLine.txt).width) / 2
     saveProject()
-    renderMeme()
+    onRenderMeme()
 }
 
 function onSaveImage() {

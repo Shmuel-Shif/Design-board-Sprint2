@@ -7,6 +7,7 @@ let dragLine
 let offsetX, offsetY
 let img = null
 let textData = []
+let isImageLoading = false
 
 var memeService = {
     gMeme: {
@@ -40,7 +41,7 @@ var memeService = {
         meme.lines.push(newLine)
         meme.selectedLineIdx = meme.lines.length - 1
 
-        renderMeme()
+        onRenderMeme()
         saveProject()
     },
 
@@ -109,7 +110,7 @@ function setTextStrokeColor() {
     const strokeColorPicker = document.getElementById('strokeColorPicker')
     const selectedStrokeColor = strokeColorPicker.value
     memeService.setLineStrokeColor(selectedStrokeColor)
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }
 
@@ -117,7 +118,7 @@ function setTextFillColor() {
     const fillColorPicker = document.getElementById('fillColorPicker')
     const selectedFillColor = fillColorPicker.value
     memeService.setLineFillColor(selectedFillColor)
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }
 
@@ -125,7 +126,7 @@ function increaseFontSize() {
     const meme = memeService.getMeme()
     const line = meme.lines[meme.selectedLineIdx]
     line.size += 2
-    renderMeme()
+    onRenderMeme()
     saveProject()
 
 }
@@ -134,7 +135,7 @@ function decreaseFontSize() {
     const meme = memeService.getMeme()
     const line = meme.lines[meme.selectedLineIdx]
     line.size -= 2
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }
 
@@ -147,7 +148,7 @@ function switchLine() {
     }
 
     meme.selectedLineIdx = newSelectedLineIdx
-    renderMeme()
+    onRenderMeme()
     saveProject()
 }
 
@@ -172,31 +173,48 @@ function initDragAndDrop() {
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
 
+    let isDragging = false
+    let dragLine = null
+
     canvas.addEventListener('mousedown', (e) => {
-        let xPos = e.offsetX
-        let yPos = e.offsetY
-        
-        meme.lines.forEach((line, index) => {
-            if (xPos >= line.x && xPos <= line.x + line.textWidth && 
-                yPos >= line.yPos && yPos <= line.yPos + line.size) {
+        const xPos = e.offsetX
+        const yPos = e.offsetY
 
-                canvas.addEventListener('mousemove', (moveEvent) => {
-                    const newX = moveEvent.offsetX
-                    const newY = moveEvent.offsetY
-
-
-                    line.x = newX - line.textWidth / 2
-                    line.yPos = newY - line.size / 2
-                    renderMeme()
-                })
+        meme.lines.forEach((line) => {
+            if (
+                xPos >= line.x &&
+                xPos <= line.x + line.textWidth &&
+                yPos >= line.yPos - line.size &&
+                yPos <= line.yPos
+            ) {
+                isDragging = true
+                dragLine = line
             }
         })
-
-            canvas.addEventListener('mouseup', () => {
-            canvas.removeEventListener('mousemove', () => {})
-        })
     })
-    saveProject()
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!isDragging || !dragLine) return
+
+        const newX = e.offsetX
+        const newY = e.offsetY
+
+        dragLine.x = newX - dragLine.textWidth / 2
+        dragLine.yPos = newY + dragLine.size / 2
+
+        onRenderMeme()
+    })
+
+    canvas.addEventListener('mouseup', () => {
+        isDragging = false
+        dragLine = null
+        saveProject()
+    })
+
+    canvas.addEventListener('mouseleave', () => {
+        isDragging = false
+        dragLine = null
+    })
 }
 
 function setupDragAndDrop() {
@@ -237,7 +255,7 @@ function setupDragAndDrop() {
             meme.selectedLineIdx = null 
         }
 
-        renderMeme()
+        onRenderMeme()
         saveProject()
     })
 
@@ -245,7 +263,7 @@ function setupDragAndDrop() {
         if (isDragging && dragLine) {
             dragLine.x = e.offsetX - offsetX
             dragLine.yPos = e.offsetY - offsetY
-            renderMeme()
+            onRenderMeme()
             saveProject()
         }
     })
@@ -287,26 +305,44 @@ function shareOnFacebook() {
 }
 
 function loadImage(event) {
-    const canvas = document.getElementById('myCanvas')
-    const ctx = canvas.getContext('2d')
+    console.trace('loadImage: מופעלת מ:');
 
-    const file = event.target.files[0]
-    if (!file) return
-
-    const reader = new FileReader()
-
-    reader.onload = function(e) {
-        img = new Image()
-        img.src = e.target.result
-
-        img.onload = function() {
-            
-            drawImage()
-        }
+    if (isImageLoading) {
+        console.log('loadImage: הפעולה כבר רצה, מתעלם מקריאה נוספת');
+        return;
     }
 
-    reader.readAsDataURL(file)
-    saveProject()
+    isImageLoading = true;
+    console.log('loadImage: התחלה');
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const file = event.target.files[0];
+    if (!file) {
+        isImageLoading = false;
+        console.log('loadImage: לא נבחר קובץ');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
+
+        console.log('loadImage: התמונה נטענה');
+
+        img.onload = function() {
+            console.log('loadImage: התמונה נטענה לקנבס');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            console.log('loadImage: הקנבס התעדכן');
+            saveProject();
+            isImageLoading = false;
+        };
+    };
+
+    reader.readAsDataURL(file);
 }
 
 function drawImage() {

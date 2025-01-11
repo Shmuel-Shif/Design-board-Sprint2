@@ -13,7 +13,7 @@ function loadProject() {
     }
     const meme = JSON.parse(savedData)
     memeService.gMeme = meme
-    renderMeme()
+    onRenderMeme()
 }
 
 function loadSavedImages() {
