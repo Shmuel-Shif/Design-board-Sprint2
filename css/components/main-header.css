@@ -16,10 +16,6 @@
     justify-content: space-evenly;
 }
 
-.main-header .btn-toggle-menu {
-    display: none;
-}
-
 .main-header > .header-content > .logo::after {
     color: var(--clr-primary2);
     content: '!';

@@ -1,7 +1,10 @@
 'use strict'
 
 let currentImageData = null
+let selectedImageSrc = null
 let savedImages = []
+let isEditorOpen = false
+let isGalleryOpen = false
 var gImgs
 var memeService
 
@@ -26,7 +29,8 @@ function onInit() {
         renderSavedImages()
     })
 
-    loadProject() 
+    loadProject()    
+    loadSavedImages()
     setupDragAndDrop()
     renderEmojis()
     renderMeme()
@@ -44,16 +48,21 @@ function renderMeme() {
 
     image.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        
+
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
 
         meme.lines.forEach((line, idx) => {
             ctx.font = `${line.size}px ${line.font || 'Arial'}`
 
             if (line.yPos === undefined) {
-                line.yPos = (idx === meme.lines.length - 1) 
-                    ? canvas.height - 50 - line.size 
-                    : 50 + (line.size + 20) * idx
+                if (idx === 0) { 
+                    line.yPos = canvas.height - 20
+                } else if (idx === 1) { 
+                    line.yPos = 50
+                } else { 
+                    const centerY = canvas.height / 2
+                    line.yPos = centerY + (idx - 2) * 1
+                }
             }
 
             if (line.x === undefined) {
@@ -66,6 +75,16 @@ function renderMeme() {
                 }
             }
 
+            if (line.x < 0) line.x = 0
+            if (line.x + ctx.measureText(line.txt).width > canvas.width) {
+                line.x = canvas.width - ctx.measureText(line.txt).width
+            }
+
+            if (line.y < 0) line.y = 0
+            if (line.y + ctx.measureText(line.txt).width > canvas.width) {
+                line.y = canvas.width - ctx.measureText(line.txt).width
+            }
+            
             ctx.fillStyle = line.color
             ctx.fillText(line.txt, line.x, line.yPos)
             
@@ -89,6 +108,7 @@ function renderMeme() {
                 ctx.strokeText(line.txt, line.x, line.yPos)
             }
         })
+
         saveProject()
     }
 }
@@ -182,6 +202,7 @@ function onAlignLeft() {
     const meme = memeService.getMeme()
     const selectedLine = meme.lines[meme.selectedLineIdx]
 
+    selectedLine.align = 'left'
     selectedLine.x = 0
     saveProject()
     renderMeme()
@@ -192,7 +213,10 @@ function onAlignRight() {
     const selectedLine = meme.lines[meme.selectedLineIdx]
 
     const canvas = document.querySelector('canvas')
-    selectedLine.x = canvas.width - selectedLine.textWidth
+    const ctx = canvas.getContext('2d')
+    ctx.font = `${selectedLine.size}px ${selectedLine.font || 'Arial'}`
+    selectedLine.align = 'right'
+    selectedLine.x = canvas.width - ctx.measureText(selectedLine.txt).width
     saveProject()
     renderMeme()
 }
@@ -202,9 +226,12 @@ function onAlignCenter() {
     const selectedLine = meme.lines[meme.selectedLineIdx]
 
     const canvas = document.querySelector('canvas')
-    selectedLine.x = (canvas.width - selectedLine.textWidth) / 2
-    renderMeme()
+    const ctx = canvas.getContext('2d')
+    ctx.font = `${selectedLine.size}px ${selectedLine.font || 'Arial'}`
+    selectedLine.align = 'center'
+    selectedLine.x = (canvas.width - ctx.measureText(selectedLine.txt).width) / 2
     saveProject()
+    renderMeme()
 }
 
 function onSaveImage() {
@@ -217,7 +244,7 @@ function onSaveImage() {
     saveProject()
 }
 
-function onImageClick(imageSrc) {
+function onImageClickToEdit(imageSrc) {
     const canvas = document.getElementById('myCanvas')
     const ctx = canvas.getContext('2d')
 
@@ -238,10 +265,42 @@ function onEditImage() {
     const canvas = document.getElementById('myCanvas')
     const ctx = canvas.getContext('2d')
 
-    if (currentImageData) {
+ 
+    if (selectedImageSrc) {
+        const img = new Image()
+        img.src = selectedImageSrc
+
+        img.onload = function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)  
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height)  
+
+            currentImageData = ctx.getImageData(0, 0, canvas.width, canvas.height)  // שומרים את הנתונים של התמונה
+        }
+    } else if (currentImageData) { 
         ctx.putImageData(currentImageData, 0, 0)
     }
-    saveProject()
+
+    saveProject() 
+    closeModal() 
+    closeEditor()
 }
 
+function onImageClick(imageSrc) {
+    selectedImageSrc = imageSrc
+    const modal = document.getElementById('image-modal')
+    modal.style.display = 'block'
+}
 
+function onDeleteImage() {
+    savedImages = savedImages.filter(image => image !== selectedImageSrc)
+
+    renderSavedImages()
+
+    if (savedImages.length === 0) {
+        const canvas = document.getElementById('myCanvas')
+        const ctx = canvas.getContext('2d')
+        ctx.clearRect(0, 0, canvas.width, canvas.height) 
+    }
+
+    closeModal()  
+}

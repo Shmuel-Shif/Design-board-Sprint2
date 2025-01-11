@@ -27,81 +27,115 @@ let keywordPopularity = {
   smile: 1,
   family: 1,
   playful: 1,
-  happy: 1
+  happy: 1,
+  All: 0,
 }
 
 function renderGallery() {
+  closeEditor()
   const galleryContainer = document.querySelector('#gallery')
   galleryContainer.innerHTML = ''
-
+  
   const keywordsContainer = document.querySelector('#keywords')
   keywordsContainer.innerHTML = ''
 
   Object.keys(keywordPopularity).forEach(keyword => {
-    const keywordElem = document.createElement('span')
-    keywordElem.textContent = keyword
-    const size = keywordPopularity[keyword] + 15 
-    keywordElem.style.fontSize = `${size}px`
-    keywordElem.style.margin = '10px'
-    keywordElem.style.cursor = 'pointer'
+      const keywordElem = document.createElement('span')
+      keywordElem.textContent = keyword
 
-    keywordElem.addEventListener('click', () => {
-      galleryContainer.innerHTML = ''
+      const size = keywordPopularity[keyword] + 15
+      keywordElem.style.fontSize = `${size}px`
+      keywordElem.style.margin = '10px'
+      keywordElem.style.cursor = 'pointer'
 
-      const allKeywordElems = keywordsContainer.querySelectorAll('span');
-      allKeywordElems.forEach(k => {
-        k.style.margin = '10px'
+      keywordElem.addEventListener('click', () => {
+          if (keyword === 'All') {
+              renderGallery()
+          } else {
+              keywordPopularity[keyword]++
+              renderFilteredGallery(keyword)
+              renderKeywords()
+          }
+          saveProject()
       })
-      keywordElem.style.margin = '20px'
 
-      filterImagesByKeyword(keyword)
-      keywordPopularity[keyword]++
-      renderGallery()
-      saveProject()
-    })
-
-    keywordsContainer.appendChild(keywordElem)
+      keywordsContainer.appendChild(keywordElem);
   })
 
-  const imagesToShow = gImgs.filter(img => img.keywords.some
-        (keyword => keywordPopularity[keyword] > 1))
+  gImgs.forEach(img => {
+      const imgElement = document.createElement('img')
+      imgElement.src = img.url
+      imgElement.alt = 'Gallery Image'
+      imgElement.style.width = '150px'
+      imgElement.style.margin = '10px'
 
-  imagesToShow.forEach(img => {
-    const imgElement = document.createElement('img')
-    imgElement.src = img.url
-    imgElement.alt = 'Gallery Image'
-    imgElement.style.width = '150px'
-    imgElement.style.margin = '10px'
+      imgElement.addEventListener('click', () => {
+          onImgSelect(img.id);
+          closeGallery()
+      })
 
-    imgElement.addEventListener('click', () => {
-      onImgSelect(img.id)
-    })
-
-    galleryContainer.appendChild(imgElement)
+      galleryContainer.appendChild(imgElement)
   })
 
   document.querySelector('.box-gallery').style.display = 'block'
   saveProject()
 }
 
-function filterImagesByKeyword(keyword) {
+function renderFilteredGallery(keyword) {
   const galleryContainer = document.querySelector('#gallery')
-  galleryContainer.innerHTML = ''
+  galleryContainer.innerHTML = '';
 
   const filteredImages = gImgs.filter(img => img.keywords.includes(keyword))
 
   filteredImages.forEach(img => {
-    const imgElement = document.createElement('img')
-    imgElement.src = img.url
-    imgElement.alt = 'Filtered Image'
-    imgElement.style.width = '150px'
-    imgElement.style.margin = '10px'
+      const imgElement = document.createElement('img')
+      imgElement.src = img.url
+      imgElement.alt = 'Filtered Image'
+      imgElement.style.width = '150px'
+      imgElement.style.margin = '10px'
 
-    imgElement.addEventListener('click', () => {
-      onImgSelect(img.id)
-    })
+      imgElement.addEventListener('click', () => {
+          onImgSelect(img.id)
+          closeGallery()
+      })
 
-    galleryContainer.appendChild(imgElement)
+      galleryContainer.appendChild(imgElement);
+  })
+}
+
+function renderKeywords() {
+  const keywordsContainer = document.querySelector('#keywords')
+  keywordsContainer.innerHTML = ''
+
+  const allElem = document.createElement('span')
+  allElem.textContent = 'All'
+  allElem.style.fontSize = '20px'
+  allElem.style.margin = '10px'
+  allElem.style.cursor = 'pointer'
+  allElem.addEventListener('click', () => {
+      renderGallery()
+  })
+  keywordsContainer.appendChild(allElem)
+
+  Object.keys(keywordPopularity).forEach(keyword => {
+      if (keyword !== 'All') {
+          const keywordElem = document.createElement('span')
+          keywordElem.textContent = keyword
+
+          const size = keywordPopularity[keyword] + 15
+          keywordElem.style.fontSize = `${size}px`
+          keywordElem.style.margin = '10px'
+          keywordElem.style.cursor = 'pointer'
+
+          keywordElem.addEventListener('click', () => {
+              keywordPopularity[keyword]++
+              renderFilteredGallery(keyword)
+              renderKeywords()
+              saveProject()
+          })
+
+          keywordsContainer.appendChild(keywordElem)
+      }
   })
 }
 
@@ -116,15 +150,14 @@ function renderSavedImages() {
 
   savedImages.forEach((imageUrl, idx) => {
       const imgElement = document.createElement('img')
-      imgElement.src = imageUrl;
+      imgElement.src = imageUrl
       imgElement.alt = `Saved image ${idx + 1}`
       imgElement.style.width = '150px'
       imgElement.style.margin = '10px'
 
       imgElement.addEventListener('click', () => onImageClick(imageUrl))
-      
+
       savedImagesContainer.appendChild(imgElement)
   })
-  saveProject()
 }
 

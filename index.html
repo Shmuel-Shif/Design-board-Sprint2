@@ -18,15 +18,15 @@
                     <li><a href="">About</a></li>
                 </ul>
             </nav>
-            <button class="btn-toggle-menu" onclick="toggleMenu()">&#9776;</button>       
+            <button class="btn-toggle-menu" onclick="toggleMenu()">&#9776;</button>
         </div>
     </header>
 
     <div class="box-drawing">
 
-        <canvas id="myCanvas" width="300" height="300"></canvas>
+        <canvas id="myCanvas" width="320" height="320"></canvas>
         
-        <input class="time0" type="text" id="textInput" placeholder="Enter your text" />
+        <input class="time0" type="text" id="textInput" placeholder="Enter your text"   autocomplete="off"/>
         <input class="time1" type="file" id="fileInput" accept="image/*" onchange="loadImage(event)">
 
         <button class="time2 choice" onclick="switchLine()">
@@ -97,16 +97,26 @@
 
     <div class="box-gallery">
         <div class="header-gallery">
-        <input type="text" id="search-input" placeholder="Search for an image..." oninput="onSearch(this.value)" />
         <div id="keywords"></div>
+        <button class="close-btn" onclick="closeGallery()">&#9874;</button>
     </div>
         <div id="gallery"></div> 
+    </div>
+
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <p>What do you want to do with the image?</p>
+            <button onclick="onEditImage()" id="edit-btn">Edited</button>
+            <button onclick="onDeleteImage()" id="delete-btn">Delete</button>
+            <button onclick="closeModal()" id="closed-btn">Closed</button>
+        </div>
     </div>
     
     <div class="box-editor">
         <h1>You meme:</h1>
+        <button class="close-btn" onclick="closeEditor()">&#9874;</button> 
         <div id="editor">
-        <div id="saved-images"></div>
+            <div id="saved-images"></div>
         </div>
     </div>
     

@@ -19,6 +19,8 @@ function renderEmojis() {
      currentStartIndex === 0 ? 'hidden' : 'visible'
     document.getElementById('next-btn').style.visibility =
      currentStartIndex + 3 >= emojis.length ? 'hidden' : 'visible'
+
+     saveProject()
 }
 
 function prevEmojis() {
@@ -26,6 +28,7 @@ function prevEmojis() {
         currentStartIndex -= 3
         renderEmojis()
     }
+    saveProject()
 }
 
 function nextEmojis() {
@@ -33,6 +36,7 @@ function nextEmojis() {
         currentStartIndex += 3
         renderEmojis()
     }
+    saveProject()
 }
 
 function addSticker(emoji) {
@@ -50,4 +54,5 @@ function addSticker(emoji) {
 })
 
     renderMeme()
+    saveProject()
 }

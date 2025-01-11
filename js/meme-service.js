@@ -10,7 +10,7 @@ let textData = []
 
 var memeService = {
     gMeme: {
-        selectedImgId: 4,
+        selectedImgId: 18,
         selectedLineIdx: 0,
         lines: [
             {
@@ -55,9 +55,13 @@ var memeService = {
     },
 
     setLineFillColor: function (color) {
-        const meme = this.gMeme
+        const meme = this.gMeme;
+        if (meme.selectedLineIdx === -1 || !meme.lines[meme.selectedLineIdx]) {
+            return
+        }
         meme.lines[meme.selectedLineIdx].color = color
     },
+    
 
     setImg: function (imgId) {
         this.gMeme.selectedImgId = imgId
@@ -74,6 +78,7 @@ var memeService = {
         meme.lines.splice(meme.selectedLineIdx, 1)
         meme.selectedLineIdx = meme.lines.length ? 0 : -1
     },
+    
 
     changeFontSize: function (delta) {
         const meme = this.gMeme
@@ -312,7 +317,6 @@ function drawImage() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
     }
-    saveProject()
 }
 
 function drawText(txt, x, y, fontSize = 30, color = 'white') {
@@ -328,7 +332,25 @@ function drawText(txt, x, y, fontSize = 30, color = 'white') {
 }
 
 function showEditor() {
+    closeGallery()
     const boxEditor = document.querySelector('.box-editor')
     boxEditor.style.display = 'block'
     saveProject()
+}
+
+function closeGallery() {
+    document.querySelector('.box-gallery').style.display = 'none'
+}
+
+function closeEditor() {
+    document.querySelector('.box-editor').style.display = 'none'
+}
+
+function closeModal() {
+    const modal = document.getElementById('image-modal')
+    modal.style.display = 'none'
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
 }
