@@ -14,17 +14,17 @@ function onInit() {
         canvas.addEventListener('click', onCanvasClick)
     }
     
-    const fileInput = document.getElementById('fileInput')
-    fileInput.addEventListener('change', loadImage) 
-
     const textInput = document.getElementById('textInput')
     textInput.addEventListener('input', onTextChange)
 
     document.querySelector('a[href="#gallery"]').addEventListener('click', () => {
+        document.querySelector('.container-gallery').style.display = 'block'; /* אם תרצה לפתוח את ה-box-editor */
         renderGallery()
     })
 
     document.querySelector('a[href="#editor"]').addEventListener('click', () => {
+    document.querySelector('.container-editor').style.display = 'block'; /* אם תרצה לפתוח את ה-box-editor */
+
         showEditor()
         renderSavedImages()
     })
@@ -33,7 +33,6 @@ function onInit() {
     menuItems.forEach(item => {
         item.addEventListener('click', toggleMenu)
     })
-
     loadProject()    
     loadSavedImages()
     setupDragAndDrop()
@@ -245,6 +244,21 @@ function onSaveImage() {
     console.log('Image saved:', imageUrl)
     renderSavedImages()
     saveProject()
+
+    const notification = document.getElementById('save-notification')
+    
+    notification.style.display = 'block'
+    setTimeout(() => {
+        notification.style.opacity = 1
+    }, 10)
+
+    setTimeout(() => {
+        notification.style.opacity = 0
+    }, 3000)
+
+    setTimeout(() => {
+        notification.style.display = 'none'
+    }, 3500)
 }
 
 function onImageClickToEdit(imageSrc) {

@@ -305,44 +305,36 @@ function shareOnFacebook() {
 }
 
 function loadImage(event) {
-    console.trace('loadImage: מופעלת מ:');
 
     if (isImageLoading) {
-        console.log('loadImage: הפעולה כבר רצה, מתעלם מקריאה נוספת');
-        return;
+        return
     }
 
-    isImageLoading = true;
-    console.log('loadImage: התחלה');
+    isImageLoading = true
 
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('myCanvas')
+    const ctx = canvas.getContext('2d')
 
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (!file) {
-        isImageLoading = false;
-        console.log('loadImage: לא נבחר קובץ');
-        return;
+        isImageLoading = false
+        return
     }
 
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = function(e) {
-        const img = new Image();
-        img.src = e.target.result;
-
-        console.log('loadImage: התמונה נטענה');
+        const img = new Image()
+        img.src = e.target.result
 
         img.onload = function() {
-            console.log('loadImage: התמונה נטענה לקנבס');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            console.log('loadImage: הקנבס התעדכן');
-            saveProject();
-            isImageLoading = false;
-        };
-    };
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+            saveProject()
+            isImageLoading = false
+        }
+    }
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file)
 }
 
 function drawImage() {
@@ -376,10 +368,12 @@ function showEditor() {
 
 function closeGallery() {
     document.querySelector('.box-gallery').style.display = 'none'
+    document.querySelector('.container-gallery').style.display = 'none'
 }
 
 function closeEditor() {
     document.querySelector('.box-editor').style.display = 'none'
+    document.querySelector('.container-editor').style.display = 'none'
 }
 
 function closeModal() {

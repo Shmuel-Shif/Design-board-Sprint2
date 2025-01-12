@@ -1,3 +1,11 @@
+.container-drawing {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding: 0; 
+    margin-top: 70px;
+}
+
 .box-drawing {
     width: auto; 
     display: grid;
@@ -6,17 +14,18 @@
     grid-template-columns: repeat(23, 30px);
     grid-template-rows: repeat(15, 30px);
     gap: 3px;
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     border-radius: 15px;
     background-color: #d6d3d3;
+    box-shadow: 11px 12px 8px rgba(0, 0, 0, 0.2), -11px -12px 8px rgba(0, 0, 0, 0.2);
 }
 
 #myCanvas {
     border-radius: 15px;
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-column-end: 14;
-    grid-row-start: 2;
+    grid-row-start: 5;
     grid-row-end: 12;
     max-width: 100%;
     border: 2px solid #000;
@@ -28,8 +37,8 @@
     font-weight: bold;
     border: none;
     border-bottom: 2px solid #6793f1;
-    grid-column-start: 22;
-    grid-column-end: 12;
+    grid-column-start: 23;
+    grid-column-end: 13;
     grid-row-start: 2;
     grid-row-end: 3;
     max-width: 100%;
@@ -41,166 +50,191 @@
     border-bottom: 2px solid #6793f1; 
 }
 
-.time1 {
-    background-color: #5484eb;
-    grid-column-start: 3;
-    grid-column-end: 9;
-    grid-row-start: 13;
-    grid-row-end: 14;
-    max-width: 100%;
-}
-
 .time2 {
+    border-radius: 15px;
     background-color: #5484eb;
-    grid-column-start: 14;
-    grid-column-end: 16;
+    grid-column-start: 15;
+    grid-column-end: 17;
     grid-row-start: 3;
     grid-row-end: 5;
     max-width: 100%;
 }
 
 .time3 {
+    border-radius: 15px;
     background-color: rgb(114, 248, 114);
-    grid-column-start: 16;
-    grid-column-end: 18;
+    grid-column-start: 17;
+    grid-column-end: 19;
     grid-row-start: 3;
     grid-row-end: 5;
     max-width: 100%;
 }
 
 .time4 {
+    border-radius: 15px;
     background-color: rgb(250, 103, 103);
-    grid-column-start: 18;
-    grid-column-end: 20;
+    grid-column-start: 19;
+    grid-column-end: 21;
     grid-row-start: 3;
     grid-row-end: 5;
     max-width: 100%;
 }
 
 .time5 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 14;
-    grid-column-end: 12;
+    grid-column-start: 15;
+    grid-column-end: 13;
     grid-row-start: 5;
     grid-row-end: 7;
     max-width: 100%;
 }
 
 .time6 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 16;
-    grid-column-end: 14;
+    grid-column-start: 17;
+    grid-column-end: 15;
     grid-row-start: 5;
     grid-row-end: 7;
     max-width: 100%;
 }
 
 .time7 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 18;
-    grid-column-end: 16;
+    grid-column-start: 19;
+    grid-column-end: 17;
     grid-row-start: 5;
     grid-row-end: 7;
     max-width: 100%;
 }
 
 .time8 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 22;
-    grid-column-end: 20;
+    grid-column-start: 23;
+    grid-column-end: 21;
     grid-row-start: 5;
     grid-row-end: 7;
     max-width: 100%;
 }
 
 .time9 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 20;
-    grid-column-end: 18;
+    grid-column-start: 21;
+    grid-column-end: 19;
     grid-row-start: 5;
     grid-row-end: 7;
     max-width: 100%;
 }
 
 .time10 {
-    font-size: 18px;
+    border-radius: 15px;
+    font-size: 17px;
     border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 18;
-    grid-column-end: 12;
-    grid-row-start: 7;
-    grid-row-end: 9;
+    grid-column-start: 19;
+    grid-column-end: 13;
+    grid-row-start: 6;
+    grid-row-end: 10;
+    padding: 16px;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .time11 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 20;
-    grid-column-end: 18;
+    grid-column-start: 21;
+    grid-column-end: 19;
     grid-row-start: 7;
     grid-row-end: 9;
     max-width: 100%;
 }
 
 .time12 {
+    border-radius: 15px;
     background-color: #7e87a7;
-    grid-column-start: 22;
-    grid-column-end: 20;
+    grid-column-start: 23;
+    grid-column-end: 21;
     grid-row-start: 7;
     grid-row-end: 9;
     max-width: 100%;
 }
 
 .time13 {
+    border-radius: 15px;
     background-color: #505a7c;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-column-start: 22;
-    grid-column-end: 12;
+    grid-column-start: 23;
+    grid-column-end: 13;
     grid-row-start: 9;
     grid-row-end: 11;
     max-width: 100%;
 }
 
 .time14 {
+    border-radius: 15px;
     font-size: 1em;
     font-weight: bold;
     background-color: #6793f1;
-    grid-column-start: 12;
-    grid-column-end: 17;
+    grid-column-start: 13;
+    grid-column-end: 18;
     grid-row-start: 11;
     grid-row-end: 13;
     max-width: 100%;
 }
 
 .time15 {
+    border-radius: 15px;
     font-size: 1em;
     font-weight: bold;
     background-color: #6793f1;
-    grid-column-start: 17;
-    grid-column-end: 22;
+    grid-column-start: 18;
+    grid-column-end: 23;
     grid-row-start: 11;
     grid-row-end: 13;
     max-width: 100%;
 }
 
 .time16 {
+    border-radius: 15px;
     font-size: 1em;
     font-weight: bold;
     background-color: #6793f1;
-    grid-column-start: 13;
-    grid-column-end: 21;
+    grid-column-start: 14;
+    grid-column-end: 22;
     grid-row-start: 13;
     grid-row-end: 15;
     max-width: 100%;
+}
+
+.time2:hover {
+    background-color: #4973ce;
+}
+
+.time3:hover {
+    background-color: rgb(98, 211, 98);
+}
+
+.time4:hover {
+    background-color: rgb(216, 92, 92);  
 }
 
 .time14:hover,
 .time15:hover,
 .time16:hover{
     background-color: #5484eb;
+}
+
+.time5:hover, .time6:hover, .time7:hover, .time8:hover, .time9:hover, .time10:hover, .time11:hover, .time12:hover {
+    background-color: #6f778f;
+
 }
 
 @media (max-width: 800px) {
@@ -226,7 +260,7 @@
         width: 100%;
     }
 
-    .time1, .time2, .time3, .time4, .time5, .time6, .time7, .time8, .time9, .time10, .time11, .time12, .time13, .time14, .time15, .time16 {
+    .time2, .time3, .time4, .time5, .time6, .time7, .time8, .time9, .time10, .time11, .time12, .time13, .time14, .time15, .time16 {
         font-size: 0.9em;
         width: 80%; 
         margin: 5px 0;

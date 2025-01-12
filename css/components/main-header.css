@@ -2,13 +2,12 @@
     background-color: var(--clr-primary1);
     color: var(--clr-head);
     box-shadow: inset 0px -6px 0 var(--clr-primary-1);
-    padding: 0.5em;
+    padding: 1.5em;
 }
 
 .main-header > .header-content > .logo {
     font-family: cursive;
     font-size: 2rem;
-    margin-left: 2em;
 }
 
 .header-content {
@@ -19,11 +18,13 @@
 .main-header > .header-content > .logo::after {
     color: var(--clr-primary2);
     content: '!';
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: bold;
 }
 
 .btn-toggle-menu {
+    display: none;
+    margin: 0;
     background: none;
     border: none;
     color: white;
@@ -42,6 +43,7 @@
         position: fixed;
         top: 0; 
         box-shadow: none;
+        z-index: 1000;
     }
     
     .header-content {
@@ -67,19 +69,31 @@
         font-size: 2em;
         z-index: 1;
     }
+
 }
 
 @media (max-width: 480px) {
     .main-header {
-        padding: 0.5em;
+        position: fixed;
+        top: 0; 
     }
     
     .main-header > .header-content > .logo {
-        font-size: 1.3rem;
+        font-size: 1.8em;
         margin-left: 1em;
     }
     
+    .logo {
+        z-index: 1;
+    }
+    
+    .main-header {
+        height: 60px;
+        width: 100%;
+    }
+    
     .btn-toggle-menu {
-        font-size: 1.8em;
+        font-size: 2em;
+        z-index: 1;
     }
 }

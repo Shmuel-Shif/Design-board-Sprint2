@@ -1,3 +1,18 @@
+.container-editor {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 999;
+}
+
+.container-editor.show {
+    display: block; 
+}
+
 .box-editor {
     position: fixed; 
     top: 50%;
@@ -5,14 +20,49 @@
     transform: translate(-50%, -50%);
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    width: 80%;
+    width: 70%;
     max-width: 700px; 
-    height: 80%; 
+    height: 70%; 
     overflow-y: auto; 
     z-index: 1000;
     display: none; 
     padding: 20px;
     background-color: var(--clr-primary1);
+}
+
+.box-editor::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.box-editor::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 10px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.box-editor::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.box-editor::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.box-editor::-webkit-scrollbar-horizontal {
+    height: 12px; 
+}
+
+.box-editor::-webkit-scrollbar-thumb:horizontal {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.box-editor::-webkit-scrollbar-track:horizontal {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #editor {
@@ -48,11 +98,13 @@ h1 {
     margin: 10px;
     width: 150px;
     border-radius: 15px;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #editor  img:hover {
     transform: scale(1.1); 
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); 
 }
 
 .modal {
@@ -82,6 +134,7 @@ h1 {
 }
 
 .modal #edit-btn {
+    font-size: 17px;
     margin: 10px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -92,6 +145,7 @@ h1 {
 }
 
 .modal #delete-btn {
+    font-size: 17px;
     margin: 10px;
     padding: 10px 20px;
     background-color: #e23b3b;
@@ -102,6 +156,7 @@ h1 {
 }
 
 .modal #closed-btn{
+    font-size: 17px;
     margin: 10px;
     padding: 10px 20px;
     background-color: #0c9de0;

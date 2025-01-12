@@ -16,9 +16,9 @@ var gImgs = [
   {id: 13, url: 'img/13.jpg', keywords: ['smile', 'pet']},
   {id: 14, url: 'img/14.jpg', keywords: ['family', 'pet']},
   {id: 15, url: 'img/15.jpg', keywords: ['family', 'pet']},
-  {id: 16, url: 'img/16.jpg', keywords: ['playful', 'pet']},
-  {id: 17, url: 'img/17.jpg', keywords: ['playful', 'pet']},
-  {id: 18, url: 'img/18.jpg', keywords: ['playful', 'pet']}
+  {id: 16, url: 'img/16.jpg', keywords: ['play', 'pet']},
+  {id: 17, url: 'img/17.jpg', keywords: ['play', 'pet']},
+  {id: 18, url: 'img/18.jpg', keywords: ['play', 'pet']}
 ]
 
 let keywordPopularity = {
@@ -26,81 +26,59 @@ let keywordPopularity = {
   cute: 1,
   smile: 1,
   family: 1,
-  playful: 1,
+  play: 1,
   happy: 1,
   All: 0,
 }
 
 function renderGallery() {
-  closeEditor()
-  const galleryContainer = document.querySelector('#gallery')
-  galleryContainer.innerHTML = ''
+    closeEditor()
+    const galleryContainer = document.querySelector('#gallery')
+    galleryContainer.innerHTML = ''
+    renderKeywords()
+    renderUploadButton(galleryContainer)
   
-  const keywordsContainer = document.querySelector('#keywords')
-  keywordsContainer.innerHTML = ''
-
-  Object.keys(keywordPopularity).forEach(keyword => {
-      const keywordElem = document.createElement('span')
-      keywordElem.textContent = keyword
-
-      const size = keywordPopularity[keyword] + 15
-      keywordElem.style.fontSize = `${size}px`
-      keywordElem.style.margin = '10px'
-      keywordElem.style.cursor = 'pointer'
-
-      keywordElem.addEventListener('click', () => {
-          if (keyword === 'All') {
-              renderGallery()
-          } else {
-              keywordPopularity[keyword]++
-              renderFilteredGallery(keyword)
-              renderKeywords()
-          }
-          saveProject()
-      })
-
-      keywordsContainer.appendChild(keywordElem);
-  })
-
-  gImgs.forEach(img => {
-      const imgElement = document.createElement('img')
-      imgElement.src = img.url
-      imgElement.alt = 'Gallery Image'
-      imgElement.style.width = '150px'
-      imgElement.style.margin = '10px'
-
-      imgElement.addEventListener('click', () => {
-          onImgSelect(img.id);
-          closeGallery()
-      })
-
-      galleryContainer.appendChild(imgElement)
-  })
-
-  document.querySelector('.box-gallery').style.display = 'block'
-  saveProject()
+    gImgs.forEach(img => {
+        const imgElement = document.createElement('img')
+        imgElement.src = img.url;
+        imgElement.alt = 'Gallery Image'
+        imgElement.style.width = '150px'
+        imgElement.style.margin = '10px'
+  
+        imgElement.addEventListener('click', () => {
+            onImgSelect(img.id)
+            closeGallery()
+        })
+  
+        galleryContainer.appendChild(imgElement)
+    })
+  
+    document.querySelector('.box-gallery').style.display = 'block'
+    saveProject()
 }
-
+  
 function renderFilteredGallery(keyword) {
-  const galleryContainer = document.querySelector('#gallery')
-  galleryContainer.innerHTML = '';
-
-  const filteredImages = gImgs.filter(img => img.keywords.includes(keyword))
-
-  filteredImages.forEach(img => {
-      const imgElement = document.createElement('img')
-      imgElement.src = img.url
-      imgElement.alt = 'Filtered Image'
-      imgElement.style.width = '150px'
-      imgElement.style.margin = '10px'
-
-      imgElement.addEventListener('click', () => {
-          onImgSelect(img.id)
-          closeGallery()
-      })
-
-      galleryContainer.appendChild(imgElement);
-  })
+    const galleryContainer = document.querySelector('#gallery')
+    galleryContainer.innerHTML = ''
+  
+    renderUploadButton(galleryContainer)
+  
+    const filteredImages = gImgs.filter(img => img.keywords.includes(keyword))
+  
+    filteredImages.forEach(img => {
+        const imgElement = document.createElement('img')
+        imgElement.src = img.url;
+        imgElement.alt = 'Filtered Image'
+        imgElement.style.width = '150px'
+        imgElement.style.margin = '10px'
+  
+        imgElement.addEventListener('click', () => {
+            onImgSelect(img.id)
+            closeGallery()
+        })
+  
+        galleryContainer.appendChild(imgElement);
+    })
 }
 
 function renderKeywords() {
@@ -161,3 +139,21 @@ function renderSavedImages() {
   })
 }
 
+function renderUploadButton(container) {
+    const uploadLabel = document.createElement('label')
+    uploadLabel.classList.add('upload-btn')
+    uploadLabel.textContent = '+'
+    
+    const fileInput = document.createElement('input')
+    fileInput.type = 'file'
+    fileInput.accept = 'image/*'
+    fileInput.hidden = true
+
+    fileInput.addEventListener('change', (event) => {
+        loadImage(event)
+        closeGallery() 
+    })
+  
+    uploadLabel.appendChild(fileInput)
+    container.appendChild(uploadLabel)
+}
