@@ -9,6 +9,7 @@
 @import url(drawing/basic-box.css);
 @import url(drawing/button.css);
 
-@import url(editor/editor-section.css);
 @import url(gallery/gallery-section.css);
+@import url(editor/editor-section.css);
+@import url(about/about-section.css);
 

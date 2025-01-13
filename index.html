@@ -14,8 +14,8 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#editor">Editor</a></li>
-                    <li><a href="">About</a></li>
+                    <li><a href="#editor">Mems</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
             </nav>
             <button class="btn-toggle-menu" onclick="toggleMenu()">&#9776;</button>
@@ -89,7 +89,7 @@
             <button id="next-btn" onclick="nextEmojis()">➡️</button>
         </div>  
 
-        <button class="time14" onclick="onSaveImage()">Save img</button>
+        <button class="time14" onclick="onSaveImage()">Save meme</button>
         <button class="time15" onclick="downloadMeme()">Download</button>
         <button class="time16" onclick="shareOnFacebook()">Share on Facebook</button>
 
@@ -109,7 +109,7 @@
 
     <div class="container-editor">
         <div class="box-editor">
-            <h1>You meme:</h1>
+            <h1>You memes:</h1>
             <button class="close-btn" onclick="closeEditor()">&#215;</button> 
             <div id="editor">
                 <div id="saved-images"></div>
@@ -117,10 +117,32 @@
         </div>
     </div>
 
+    <div class="container-about">
+        <div class="box-about">
+            <h1>Hello, a little about myself.</h1>
+            <div class="box-about-elemnts">
+                <button class="close-btn" onclick="closeAbout()">&#215;</button> 
+                <img class="my-img" src="icons/WhatsApp Image 2025-01-13 at 12.11.27.jpeg" alt="" srcset="">
+                <p class="lorem1">ipsum dolor, sit amet consectetur adipisicing elit. Suscipit, dolorum, perferendis rem possimus omnis laborum ullam officiis quasi in iste facere. In deleniti saepe autem cumque reiciendis cupiditate. A corrupti perferendis, voluptas nobis modi ad laudantium sequi? Ullam laboriosam illum labore deserunt sit totam atque?</p>
+                <p class="lorem2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam voluptatibus vel, a totam rerum nemo quaerat recusandae error distinctio! Similique dolores aliquid porro fuga rem voluptates. Ducimus accusamus ab expedita.</p>
+                <p class="lorem3">dolor sit amet consectetur, adipisicing elit. Nam voluptatibus vel, a totam nemo quaerat recusandae error distinctio! Similique dolores aliquid porro. Ducimus accusamus ab expedita.</p>
+                <p class="lorem4">sit amet consectetur adipisicing elit. Doloribus, quae. In fuga iste eligendi molestias officiis neque? Voluptas repellat hic ab.</p>
+                <div class="review-box">
+                    <div class="user-info">
+                        <img src="icons/avatars-000419922789-31zuw5-t240x240.jpg" alt="User Avatar" class="user-avatar">
+                        <span class="user-name">Alex Harper <br><span class="rating-stars">★★★★★</span></span>
+                    </div>
+                    <p class="review-text">This is an amazing experience! I would definitely recommend it to anyone. Amazing experience, highly recommended for everyone to try once!</p>
+                </div>
+                <div id="about"></div>
+            </div>
+        </div>
+    </div>
+
     <div id="image-modal" class="modal">
         <div class="modal-content">
-            <p>What do you want to do with the image?</p>
-            <button onclick="onEditImage()" id="edit-btn">Edited</button>
+            <p>What do you want to do with the meme?</p>
+            <button onclick="onEditImage()" id="edit-btn">Edite</button>
             <button onclick="onDeleteImage()" id="delete-btn">Delete</button>
             <button onclick="closeModal()" id="closed-btn">Closed</button>
         </div>
@@ -131,7 +153,7 @@
     <footer>
         <p>© Shmuel Shif 2025</p>
     </footer>
-    
+
     <script src="js/meme-service.js"></script>
     <script src="js/header-controller.js"></script>
     <script src="js/meme-controller.js"></script>

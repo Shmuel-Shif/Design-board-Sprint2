@@ -18,21 +18,25 @@ function onInit() {
     textInput.addEventListener('input', onTextChange)
 
     document.querySelector('a[href="#gallery"]').addEventListener('click', () => {
-        document.querySelector('.container-gallery').style.display = 'block'; /* אם תרצה לפתוח את ה-box-editor */
+        document.querySelector('.container-gallery').style.display = 'block'
         renderGallery()
     })
 
     document.querySelector('a[href="#editor"]').addEventListener('click', () => {
-    document.querySelector('.container-editor').style.display = 'block'; /* אם תרצה לפתוח את ה-box-editor */
-
+    document.querySelector('.container-editor').style.display = 'block'
         showEditor()
         renderSavedImages()
+    })
+
+    document.querySelector('a[href="#about"]').addEventListener('click', () => {
+        showAbout()
     })
 
     const menuItems = document.querySelectorAll('.main-nav > ul > li')
     menuItems.forEach(item => {
         item.addEventListener('click', toggleMenu)
     })
+
     loadProject()    
     loadSavedImages()
     setupDragAndDrop()

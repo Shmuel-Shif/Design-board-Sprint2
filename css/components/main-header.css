@@ -97,3 +97,27 @@
         z-index: 1;
     }
 }
+
+@media (max-width: 350px) {
+    .main-header > .header-content > .logo {
+        font-size: 1.5em;
+        margin-left: 0.5em;
+    }
+    
+    .btn-toggle-menu {
+        font-size: 1.5em;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 280px) {
+    .main-header > .header-content > .logo {
+        font-size: 1em;
+        margin-left: 0.5em;
+    }
+    
+    .btn-toggle-menu {
+        font-size: 1em;
+        z-index: 1;
+    }
+}

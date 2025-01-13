@@ -10,7 +10,7 @@
 }
 
 .container-gallery.show {
-    display: block; /
+    display: block; 
 }
 
 .box-gallery {
@@ -140,6 +140,7 @@ span:hover {
     left: -5px;
     background-color: #ff0000;
     color: white;
+    border-top-left-radius: 10px;
     border: none;
     width: 30px;
     height: 30px;

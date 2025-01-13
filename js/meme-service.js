@@ -359,6 +359,12 @@ function drawText(txt, x, y, fontSize = 30, color = 'white') {
     saveProject()
 }
 
+function closeGallery() {
+    closeAbout()
+    document.querySelector('.box-gallery').style.display = 'none'
+    document.querySelector('.container-gallery').style.display = 'none'
+}
+
 function showEditor() {
     closeGallery()
     const boxEditor = document.querySelector('.box-editor')
@@ -366,14 +372,24 @@ function showEditor() {
     saveProject()
 }
 
-function closeGallery() {
-    document.querySelector('.box-gallery').style.display = 'none'
-    document.querySelector('.container-gallery').style.display = 'none'
-}
-
 function closeEditor() {
     document.querySelector('.box-editor').style.display = 'none'
     document.querySelector('.container-editor').style.display = 'none'
+}
+
+function showAbout() {
+    closeGallery()
+    const containerAbout = document.querySelector('.container-about')
+    const boxAbout = document.querySelector('.box-about')
+    
+    containerAbout.style.display = 'block'
+    boxAbout.style.display = 'block'     
+    saveProject()
+}
+
+function closeAbout() {
+    document.querySelector('.box-about').style.display = 'none'
+    document.querySelector('.container-about').style.display = 'none'
 }
 
 function closeModal() {

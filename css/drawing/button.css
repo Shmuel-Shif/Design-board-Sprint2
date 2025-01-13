@@ -43,8 +43,8 @@ button:hover .box-color {
 
 #save-notification {
     position: fixed;
-    bottom: 90px;
-    right: 0;
+    bottom: 100px;
+    right: 5px;
     background-color: rgba(32, 31, 37, 0.8); 
     color: white;
     padding: 10px 20px;
