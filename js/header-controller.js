@@ -118,31 +118,39 @@ function renderKeywords() {
 }
 
 function renderSavedImages() {
-  const savedImagesContainer = document.getElementById('saved-images')
-  if (!savedImagesContainer) {
-      console.error('Saved images container not found')
-      return
-  }
+    const savedImagesContainer = document.getElementById('saved-images')
+    if (!savedImagesContainer) {
+        console.error('Saved images container not found')
+        return
+    }
 
-  savedImagesContainer.innerHTML = ''
+    savedImagesContainer.innerHTML = ''
 
-  savedImages.forEach((imageUrl, idx) => {
-      const imgElement = document.createElement('img')
-      imgElement.src = imageUrl
-      imgElement.alt = `Saved image ${idx + 1}`
-      imgElement.style.width = '150px'
-      imgElement.style.margin = '10px'
+    if (savedImages.length === 0) {
+        const noImagesMessage = document.createElement('p')
+        noImagesMessage.textContent = 'No memes available yet. Create one to get started!'
+        noImagesMessage.classList.add('no-images-message')
+        savedImagesContainer.appendChild(noImagesMessage)
+        return
+    }
 
-      imgElement.addEventListener('click', () => onImageClick(imageUrl))
+    savedImages.forEach((imageUrl, idx) => {
+        const imgElement = document.createElement('img')
+        imgElement.src = imageUrl
+        imgElement.alt = `Saved image ${idx + 1}`
+        imgElement.style.width = '150px'
+        imgElement.style.margin = '10px'
 
-      savedImagesContainer.appendChild(imgElement)
-  })
+        imgElement.addEventListener('click', () => onImageClick(imageUrl))
+
+        savedImagesContainer.appendChild(imgElement)
+    })
 }
 
 function renderUploadButton(container) {
     const uploadLabel = document.createElement('label')
     uploadLabel.classList.add('upload-btn')
-    uploadLabel.textContent = '+'
+    uploadLabel.textContent = '📃 upload'
     
     const fileInput = document.createElement('input')
     fileInput.type = 'file'
@@ -157,3 +165,4 @@ function renderUploadButton(container) {
     uploadLabel.appendChild(fileInput)
     container.appendChild(uploadLabel)
 }
+

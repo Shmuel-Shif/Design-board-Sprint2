@@ -14,6 +14,9 @@
 }
 
 .box-about {
+    overflow-y: auto;  
+    overflow-x: hidden; 
+    box-sizing: border-box;
     position: fixed; 
     top: 50%;
     left: 50%;
@@ -91,17 +94,18 @@ h1 {
     grid-column: span 3;
     grid-row: span 4;
     border-radius: 50%;
+    margin-left: 0.5em
 }
 
 
 .lorem1,
 .lorem2,
-.lorem3,
-.lorem4 {
+.lorem3 {
     font-size: 15px;
     color: rgb(255, 255, 255);
     grid-column: span 9;  
     margin: 0;
+    letter-spacing: 1.5px;
 }
 
 .review-box {
@@ -158,54 +162,6 @@ h1 {
     line-height: 1.5;
 }
 
-@media (max-width: 1000px) {
-
-        .box-about {
-            width: 90%;
-            height: 70%;
-            overflow-y: auto;  
-            overflow-x: hidden; 
-            box-sizing: border-box;
-        }
-    
-        .box-about::-webkit-scrollbar {
-            width: 12px; 
-        }
-    
-        .box-about::-webkit-scrollbar-thumb {
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.4); 
-            border-radius: 10px;
-            border: 3px solid rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-    
-        .box-about::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-    
-        .box-about::-webkit-scrollbar-track {
-            background-color: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-    
-        .box-about::-webkit-scrollbar-horizontal {
-            height: 12px; 
-        }
-    
-        .box-about::-webkit-scrollbar-thumb:horizontal {
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 10px;
-            border: 3px solid rgba(0, 0, 0, 0.1);
-        }
-    
-        .box-about::-webkit-scrollbar-track:horizontal {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-    }
-    
-
-
 @media (max-width: 480px) {
     .box-about {
         width: 100%; 
@@ -231,8 +187,7 @@ h1 {
 
     .lorem1,
     .lorem2,
-    .lorem3,
-    .lorem4 {
+    .lorem3 {
         font-size: 13px;
     }
 

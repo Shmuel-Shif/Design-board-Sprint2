@@ -66,11 +66,11 @@
 }
 
 .upload-btn {
-    color: rgba(0, 128, 0, 0.623);
+    color: rgba(255, 255, 255, 0.623);
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
-    font-size: 80px;
+    font-size: 24px;
     background-color: #ffffff34;
     border: none;
     border-radius: 5px;

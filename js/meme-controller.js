@@ -36,7 +36,6 @@ function onInit() {
     menuItems.forEach(item => {
         item.addEventListener('click', toggleMenu)
     })
-
     loadProject()    
     loadSavedImages()
     setupDragAndDrop()

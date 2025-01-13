@@ -311,7 +311,7 @@ function loadImage(event) {
     }
 
     isImageLoading = true
-
+    
     const canvas = document.getElementById('myCanvas')
     const ctx = canvas.getContext('2d')
 
@@ -398,5 +398,7 @@ function closeModal() {
 }
 
 function toggleMenu() {
-    document.body.classList.toggle('menu-open')
+    if (window.innerWidth < 800) {
+        document.body.classList.toggle('menu-open')
+    }
 }

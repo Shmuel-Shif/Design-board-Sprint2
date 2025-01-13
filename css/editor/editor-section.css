@@ -178,6 +178,13 @@ h1 {
     background-color: #1b93ca;
 }
 
+.no-images-message {
+    background-color: rgba(245, 245, 220, 0.582);
+    padding: 1.8em;
+    border-radius: 50px;
+    color: rgba(0, 0, 0, 0.637);
+    font-size: 1.2em;
+}
 
 @media (max-width: 800px) {
     .box-editor {

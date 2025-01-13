@@ -28,7 +28,7 @@ button img {
 
 input[type="color"] {
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 0;
     z-index: 999;
     opacity: 0;  
